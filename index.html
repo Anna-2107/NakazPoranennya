@@ -495,7 +495,97 @@ p { margin: 0; }
   <p class="par-0">3. Витяг із журналу бойових дій підрозділу, на 1 арк., в 1 прим.;</p>
   <p class="par-0">4. Копія довідки-доповіді про подію, на 1 арк., в 1 прим.</p>
 
+  <!-- Підпис командира -->
+  <table class="sig-table">
+    <tr>
+      <td class="sig-l">Командир військової частини А4948</td>
+      <td class="sig-r"></td>
+    </tr>
+    <tr>
+      <td class="sig-l"><span class="e" id="d_kdr_rank">полковник</span></td>
+      <td class="sig-r"><span class="e" id="d_kdr_name">Валерій ЛИС</span></td>
+    </tr>
+  </table>
+
 </div><!-- /page1 -->
+
+<!-- ========== СТОРІНКА 2: ПОГОДЖЕНО ========== -->
+<div class="page" id="page2">
+
+  <p class="pogodz">ПОГОДЖЕНО:</p>
+
+  <div class="pog-blk">
+    <p>Тимчасово виконуючий обов'язки начальника штабу – заступника командира військової частини А4948&nbsp;</p>
+    <table class="pog-sig">
+      <tr>
+        <td class="ps-l">майор</td>
+        <td class="ps-r">Валерій АВРАМЕНКО</td>
+      </tr>
+    </table>
+    <p class="date-line">___.___.2026</p>
+  </div>
+
+  <div class="pog-blk">
+    <p>Зміст документа вимогам чинного законодавства відповідає. Негативних правових наслідків реалізація положень документа, у тому числі порушень законодавства, що можуть створити передумови для нанесення економічних збитків державі, не прогнозується.</p>
+    <p>&nbsp;</p>
+    <p>Помічник командира військової частини з&nbsp;правової роботи – начальник юридичної служби військової частини А4948</p>
+    <table class="pog-sig">
+      <tr>
+        <td class="ps-l">майор юстиції</td>
+        <td class="ps-r">Сергій ЛИТВИНОВ</td>
+      </tr>
+    </table>
+    <p class="date-line">___.___.2026</p>
+  </div>
+
+  <div class="pog-blk">
+    <p>Оформлення документу відповідає вимогам наказу ГК ЗС України від 31 січня 2024 року № 40 «Про затвердження Інструкції з діловодства у Збройних Силах України»</p>
+    <p>&nbsp;</p>
+    <p>Тимчасово виконуючий обов'язки начальника стройової частини відділення персоналу штабу військової частини&nbsp;А4948</p>
+    <table class="pog-sig">
+      <tr>
+        <td class="ps-l">старший лейтенант</td>
+        <td class="ps-r">Артем ПЕТРЕНКО</td>
+      </tr>
+    </table>
+    <p class="date-line">___.___.2026</p>
+  </div>
+
+  <div class="pog-blk">
+    <p>Підготував</p>
+    <p>Начальник групи з'ясування обставин, причин та умов вчинення правопорушень військової частини А4948</p>
+    <table class="pog-sig">
+      <tr>
+        <td class="ps-l">старший лейтенант</td>
+        <td class="ps-r">Руслан ЗАХАРЧЕНКО</td>
+      </tr>
+    </table>
+    <p class="date-line">___.___.2026</p>
+  </div>
+
+  <p class="dov-title">Доведено:</p>
+  <table class="dov-table">
+    <tr>
+      <td class="dov-line">(дата, підпис, ініціали та прізвище)</td>
+      <td class="dov-line">(дата, підпис, ініціали та прізвище)</td>
+    </tr>
+    <tr>
+      <td style="height:20pt;border-bottom:1px solid #000;">&nbsp;</td>
+      <td style="height:20pt;border-bottom:1px solid #000;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="dov-line">(дата, підпис, ініціали та прізвище)</td>
+      <td class="dov-line">(дата, підпис, ініціали та прізвище)</td>
+    </tr>
+    <tr>
+      <td style="height:20pt;">&nbsp;</td>
+      <td style="height:20pt;">&nbsp;</td>
+    </tr>
+  </table>
+
+</div><!-- /page2 -->
+
+</div><!-- /doc-wrapper -->
 
 
 </div><!-- /doc-wrapper -->
@@ -537,6 +627,8 @@ function updateDoc() {
   const jurn          = g('f_jurn');
   const kdr_rank      = g('f_kdr_rank');
   const kdr_name      = g('f_kdr_name');
+  const kdr_rank      = g('f_kdr_rank');
+  const kdr_name      = g('f_kdr_name');
 
   // Автоформи: ІВАНОВ Т.Т. (іменний) та ІВАНОВА Т.Т. (родовий)
   const sur_nom = fio_nom.split(' ')[0];
@@ -576,6 +668,8 @@ function updateDoc() {
   s('d_n3d',        n3d);
   s('d_n3n',        n3n);
   s('d_jurn',       jurn);
+  s('d_kdr_rank',   kdr_rank);
+  s('d_kdr_name',   kdr_name);
 
   ['d_sni1','d_sni2','d_sni3','d_sni4','d_sni5','d_sni6'].forEach(id => s(id, sni));
   ['d_snr1','d_snr2','d_snr3'].forEach(id => s(id, snr));
