@@ -10,24 +10,24 @@
 body {
   font-family: 'Times New Roman', Times, serif;
   font-size: 14pt;
-  background: #d0d0d0;
+  background: #c8c8c8;
   padding: 20px;
 }
 
 /* ===== ПАНЕЛЬ РЕДАГУВАННЯ ===== */
 #editor-panel {
   background: #fff;
-  border: 2px solid #3a7bd5;
+  border: 2px solid #1565c0;
   border-radius: 8px;
   padding: 20px 24px;
   margin-bottom: 24px;
-  max-width: 960px;
+  max-width: 980px;
   margin-left: auto;
   margin-right: auto;
 }
 #editor-panel h2 {
   font-family: Arial, sans-serif;
-  font-size: 12pt;
+  font-size: 11pt;
   color: #1a4a8a;
   margin-bottom: 14px;
   border-bottom: 1px solid #c0d0e8;
@@ -36,11 +36,11 @@ body {
 .fields-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 9px 20px;
+  gap: 8px 20px;
 }
 .fields-grid label {
   font-family: Arial, sans-serif;
-  font-size: 8.5pt;
+  font-size: 8pt;
   color: #555;
   display: block;
   margin-bottom: 2px;
@@ -48,21 +48,21 @@ body {
 .fields-grid input,
 .fields-grid textarea {
   width: 100%;
-  padding: 4px 7px;
-  border: 1px solid #aac;
+  padding: 4px 6px;
+  border: 1px solid #99b;
   border-radius: 3px;
   font-family: 'Times New Roman', Times, serif;
   font-size: 11pt;
   background: #fffde7;
 }
-.fields-grid textarea { resize: vertical; min-height: 52px; }
+.fields-grid textarea { resize: vertical; min-height: 50px; }
 .field-full { grid-column: 1 / -1; }
 
-.btn-row { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-row { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
 .btn {
   font-family: Arial, sans-serif;
   font-size: 10pt;
-  padding: 8px 22px;
+  padding: 7px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -72,53 +72,66 @@ body {
 .btn-copy   { background: #e65100; color: #fff; }
 .btn-docx   { background: #2e7d32; color: #fff; }
 .btn-print  { background: #6a1b9a; color: #fff; }
+#copy-msg {
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  color: green;
+  margin-top: 6px;
+  display: none;
+}
 
 /* ===== ОБГОРТКА ===== */
-#doc-wrapper { max-width: 960px; margin: 0 auto; }
+#doc-wrapper { max-width: 980px; margin: 0 auto; }
 
-/* ===== СТОРІНКА (A4) ===== */
+/* ===== СТОРІНКА A4 =====
+   Word: береги 2 см зверху/знизу, 1.5 см праворуч, 3 см ліворуч
+*/
 .page {
   background: #fff;
   width: 210mm;
   min-height: 297mm;
   margin: 0 auto 24px;
-  /* Word: береги 20мм зверху/знизу, 15мм праворуч, 30мм ліворуч */
   padding: 20mm 15mm 20mm 30mm;
-  box-shadow: 0 2px 14px rgba(0,0,0,0.25);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.28);
   line-height: 1.5;
-  position: relative;
 }
 
-/* жовте підсвічування заповнених полів */
+/* жовте підсвічування змінних полів */
 .e { background: #fff59d; }
 
 p { margin: 0; }
 
-/* ── Абзаци ── */
+/* ── Типові абзаци ── */
 .par {
   text-align: justify;
   text-indent: 1.25cm;
   margin-bottom: 6pt;
+  font-size: 14pt;
 }
-.par-no-indent {
+.par-0 {
   text-align: justify;
   text-indent: 0;
   margin-bottom: 4pt;
+  font-size: 14pt;
 }
 
-/* ── ШАПКА ── */
+/* ── Шапка: рядок з гербом ── */
+/* герб по центру зверху, як у Word */
+.header-logo {
+  text-align: center;
+  margin-bottom: 2pt;
+}
 .ministry {
   text-align: center;
   font-weight: bold;
-  letter-spacing: 0.5px;
-  margin-bottom: 2pt;
   font-size: 14pt;
+  margin-bottom: 4pt;
 }
 .doc-title {
   text-align: center;
   font-weight: bold;
   font-size: 16pt;
-  margin-bottom: 2pt;
+  margin-bottom: 4pt;
 }
 .doc-subtitle {
   text-align: center;
@@ -126,84 +139,128 @@ p { margin: 0; }
   margin-bottom: 2pt;
 }
 
-/* ── Рядок дата / місто / номер ── */
-.header-row { width: 100%; border-collapse: collapse; margin: 10pt 0; }
-.header-row td { padding: 0; vertical-align: bottom; font-size: 14pt; }
-.header-row .td-left  { text-align: left;   width: 33%; }
-.header-row .td-mid   { text-align: center; width: 34%; }
-.header-row .td-right { text-align: right;  width: 33%; }
+/* ── Рядок дата/місто/номер ── */
+.meta-row {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10pt 0 8pt;
+}
+.meta-row td {
+  font-size: 14pt;
+  padding: 0;
+  vertical-align: bottom;
+}
+.meta-left  { text-align: left;   width: 33%; }
+.meta-mid   { text-align: center; width: 34%; }
+.meta-right { text-align: right;  width: 33%; }
+
+/* горизонтальна лінія під рядком дата/місто/номер */
+.meta-line {
+  border: none;
+  border-top: 1px solid #000;
+  margin: 0 0 8pt;
+}
 
 /* ── Заголовок наказу ── */
 .subject {
   text-align: center;
-  font-weight: bold;
-  margin: 8pt 0 14pt;
   font-size: 14pt;
+  font-weight: bold;
+  margin: 8pt 0 12pt;
 }
 
 /* ── НАКАЗУЮ ── */
 .nakaz-word {
   text-align: center;
   font-weight: bold;
-  font-size: 15pt;
-  margin: 14pt 0 8pt;
+  font-size: 14pt;
+  margin: 12pt 0 6pt;
 }
 
-/* ── Пункти ── */
+/* ── Пункти (з відступом + номер) ── */
 .punkt {
   text-align: justify;
-  text-indent: 1.25cm;
-  margin-bottom: 8pt;
   font-size: 14pt;
+  margin-bottom: 6pt;
+  padding-left: 1.25cm;
+  text-indent: 0;
 }
 
-/* ── Підпис ── */
-.sig-table { width: 100%; border-collapse: collapse; margin-top: 18pt; }
-.sig-table td { padding: 2pt 0; vertical-align: bottom; font-size: 14pt; }
-.sig-table .td-left  { text-align: left; }
-.sig-table .td-right { text-align: right; }
+/* ── Підпис командира ── */
+.sig-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 14pt;
+}
+.sig-table td {
+  font-size: 14pt;
+  padding: 2pt 0;
+  vertical-align: bottom;
+}
+.sig-l { text-align: left; }
+.sig-r { text-align: right; }
 
-/* ── Нижній штамп ── */
-.bottom-stamp {
-  margin-top: 28pt;
-  border-top: 1px solid #000;
-  padding-top: 3pt;
-  font-size: 9pt;
+/* ── Нижній штамп сторінки 1 ── */
+.stamp1 {
+  margin-top: 24pt;
   text-align: center;
+  font-size: 9pt;
 }
 
 /* ===== СТОРІНКА 2 ===== */
-.page2-header {
+.p2-top {
   text-align: center;
   font-size: 9pt;
   border-bottom: 1px solid #000;
   padding-bottom: 4pt;
-  margin-bottom: 16pt;
+  margin-bottom: 14pt;
 }
-.pogodzheno-title { font-weight: bold; margin-bottom: 10pt; font-size: 14pt; }
-.sig2-table { width: 100%; border-collapse: collapse; margin-top: 4pt; }
-.sig2-table td { padding: 2pt 0; vertical-align: bottom; font-size: 14pt; }
-.sig2-table .td-rank { text-align: left; width: 40%; }
-.sig2-table .td-name { text-align: right; width: 60%; }
-.pog-block { margin-bottom: 18pt; font-size: 14pt; }
-.pog-block p { margin-bottom: 4pt; }
-.dov-block { margin-top: 24pt; }
-.dov-block > p { font-weight: bold; margin-bottom: 8pt; font-size: 14pt; }
+.p2-top2 {
+  text-align: center;
+  font-size: 9pt;
+  border-top: 1px solid #000;
+  margin-top: 14pt;
+  padding-top: 3pt;
+}
+.pogodz {
+  font-weight: bold;
+  font-size: 14pt;
+  margin-bottom: 10pt;
+}
+.pog-blk { margin-bottom: 16pt; font-size: 14pt; }
+.pog-blk p { margin-bottom: 3pt; }
+
+/* підпис блок (звання ліворуч, прізвище праворуч) */
+.pog-sig {
+  width: 100%;
+  border-collapse: collapse;
+}
+.pog-sig td {
+  font-size: 14pt;
+  padding: 1pt 0;
+  vertical-align: bottom;
+}
+.ps-l { text-align: left; width: 45%; }
+.ps-r { text-align: right; width: 55%; }
+
+.date-line { font-size: 11pt; margin-top: 2pt; }
+
+/* Доведено */
+.dov-title { font-weight: bold; font-size: 14pt; margin: 18pt 0 6pt; }
 .dov-table { width: 100%; border-collapse: collapse; }
 .dov-table td {
   width: 50%;
-  border-bottom: 1px solid #000;
   font-size: 9pt;
   color: #444;
-  padding: 2pt 4pt 0;
-  height: 22pt;
+  padding: 1pt 4pt 0;
   vertical-align: bottom;
 }
+.dov-table .dov-line { border-bottom: 1px solid #000; height: 20pt; }
 
 /* ===== ДРУК ===== */
 @media print {
   body { background: #fff; padding: 0; }
-  #editor-panel { display: none; }
+  #editor-panel { display: none !important; }
   .page {
     box-shadow: none;
     margin: 0;
@@ -211,7 +268,7 @@ p { margin: 0; }
     padding: 20mm 15mm 20mm 30mm;
     page-break-after: always;
   }
-  .page:last-of-type { page-break-after: auto; }
+  .page:last-child { page-break-after: auto; }
 }
 </style>
 </head>
@@ -219,7 +276,7 @@ p { margin: 0; }
 
 <!-- ==================== ПАНЕЛЬ РЕДАГУВАННЯ ==================== -->
 <div id="editor-panel">
-  <h2>✏️ Заповніть поля — жовтим підсвічено в документі</h2>
+  <h2>✏️ Заповніть жовті поля та натисніть «Оновити»</h2>
   <div class="fields-grid">
 
     <div>
@@ -236,7 +293,7 @@ p { margin: 0; }
       <input id="f_fio_nom" value="ІВАНОВ Тимофій Тимофійович">
     </div>
     <div>
-      <label>Ініціали (напр. Т.Т.)</label>
+      <label>Ініціали (Т.Т.)</label>
       <input id="f_ini" value="Т.Т.">
     </div>
     <div>
@@ -244,8 +301,12 @@ p { margin: 0; }
       <input id="f_sur_rod" value="ІВАНОВА">
     </div>
     <div class="field-full">
-      <label>ПІБ орудний відмінок (ІВАНОВИМ Тимофієм Тимофійовичем)</label>
+      <label>ПІБ орудний відмінок — у заголовку (ІВАНОВИМ Тимофієм Тимофійовичем)</label>
       <input id="f_fio_oru" value="ІВАНОВИМ Тимофієм Тимофійовичем">
+    </div>
+    <div class="field-full">
+      <label>ПІБ орудний скорочений — у тексті (ІВАНОВИМ Т.Т.)</label>
+      <input id="f_fio_oru_short" value="ІВАНОВИМ Т.Т.">
     </div>
 
     <div class="field-full">
@@ -304,7 +365,7 @@ p { margin: 0; }
       <input id="f_stab" value="зведеного загону військової частини А4921">
     </div>
     <div class="field-full">
-      <label>Медичний заклад (куди направлено на лікування)</label>
+      <label>Медичний заклад (куди направлено)</label>
       <input id="f_hospital" value="Військово-медичного клінічного центру Північного регіону">
     </div>
 
@@ -371,7 +432,8 @@ p { margin: 0; }
       <label>Командир — Ім'я ПРІЗВИЩЕ</label>
       <input id="f_kdr_name" value="Валерій ЛИС">
     </div>
-  </div>
+
+  </div><!-- /fields-grid -->
 
   <div class="btn-row">
     <button class="btn btn-update" onclick="updateDoc()">🔄 Оновити документ</button>
@@ -379,8 +441,9 @@ p { margin: 0; }
     <button class="btn btn-docx"   onclick="saveDocx()">💾 Зберегти .doc (Word)</button>
     <button class="btn btn-print"  onclick="window.print()">🖨️ Друк / PDF</button>
   </div>
-  <p id="copy-msg" style="font-family:Arial;font-size:9pt;color:green;margin-top:8px;display:none;">✅ Текст скопійовано в буфер обміну!</p>
-</div>
+  <p id="copy-msg">✅ Текст скопійовано в буфер обміну!</p>
+</div><!-- /editor-panel -->
+
 
 <!-- ==================== ДОКУМЕНТ ==================== -->
 <div id="doc-wrapper">
@@ -388,203 +451,213 @@ p { margin: 0; }
 <!-- ========== СТОРІНКА 1 ========== -->
 <div class="page" id="page1">
 
-  <!-- Шапка: герб + заголовок -->
-  <table style="width:100%;border-collapse:collapse;margin-bottom:6pt;">
-    <tr>
-      <!-- Малий герб України (SVG, public domain) -->
-      <td style="width:68px;vertical-align:top;padding:0 10px 0 0;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" width="58" height="81">
-          <!-- Щит -->
-          <path d="M10,10 L190,10 L190,210 Q100,270 10,210 Z" fill="#005BBB" stroke="#003399" stroke-width="4"/>
-          <!-- Тризуб (жовтий) -->
-          <g fill="#FFD500">
-            <!-- ліва нога -->
-            <rect x="62" y="80" width="22" height="110"/>
-            <!-- права нога -->
-            <rect x="116" y="80" width="22" height="110"/>
-            <!-- центральна ніжка -->
-            <rect x="89" y="120" width="22" height="70"/>
-            <!-- поперечина -->
-            <rect x="55" y="148" width="90" height="18"/>
-            <!-- ліва голова -->
-            <path d="M62,80 Q62,45 84,45 Q106,45 106,80 Q106,95 84,100 Q62,95 62,80Z"/>
-            <!-- права голова -->
-            <path d="M116,80 Q116,45 138,45 Q160,45 160,80 Q160,95 138,100 Q116,95 116,80Z"/>
-            <!-- центральна голова (вище) -->
-            <path d="M89,120 Q89,78 100,72 Q111,78 111,120Z"/>
-          </g>
-        </svg>
-      </td>
-      <td style="vertical-align:middle;text-align:center;padding:0;">
-        <p class="ministry">МІНІСТЕРСТВО ОБОРОНИ УКРАЇНИ</p>
-        <p class="doc-title">НАКАЗ</p>
-        <p class="doc-subtitle">командира військової частини А4948</p>
-        <p class="doc-subtitle">(з основної діяльності)</p>
-      </td>
-      <td style="width:68px;"></td>
-    </tr>
-  </table>
+  <!-- ГЕРБ — по центру зверху, як у Word-оригіналі -->
+  <div class="header-logo">
+    <!--
+      Офіційний малий герб України (тризуб у щиті).
+      Чорно-білий варіант — для офіційних документів.
+    -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160" width="46" height="61">
+      <!-- Щит -->
+      <path d="M6,6 L114,6 L114,118 Q60,155 6,118 Z"
+            fill="#fff" stroke="#000" stroke-width="5"/>
+      <!-- Тризуб -->
+      <g fill="#000">
+        <!-- ліва вертикаль -->
+        <rect x="27" y="54" width="14" height="56"/>
+        <!-- ліва арка (верхівка) -->
+        <path d="M27,54 Q27,18 34,14 Q41,18 41,54Z"/>
+        <!-- права вертикаль -->
+        <rect x="79" y="54" width="14" height="56"/>
+        <!-- права арка (верхівка) -->
+        <path d="M79,54 Q79,18 86,14 Q93,18 93,54Z"/>
+        <!-- центральна вертикаль -->
+        <rect x="53" y="68" width="14" height="42"/>
+        <!-- центральна арка (верхівка вища) -->
+        <path d="M53,68 Q53,26 60,20 Q67,26 67,68Z"/>
+        <!-- горизонтальна перекладина -->
+        <rect x="22" y="82" width="76" height="11"/>
+      </g>
+    </svg>
+  </div>
+
+  <p class="ministry">МІНІСТЕРСТВО ОБОРОНИ УКРАЇНИ</p>
+  <p style="margin-bottom:4pt;">&nbsp;</p>
+  <p class="doc-title">НАКАЗ</p>
+  <p style="margin-bottom:2pt;">&nbsp;</p>
+  <p class="doc-subtitle">командира військової частини А4948</p>
+  <p class="doc-subtitle">(з основної діяльності)</p>
+  <p style="margin-bottom:4pt;">&nbsp;</p>
 
   <!-- Рядок: дата / місто / номер -->
-  <table class="header-row">
+  <table class="meta-row">
     <tr>
-      <td class="td-left"><span class="e" id="d_date">00.00.2026</span></td>
-      <td class="td-mid">с. Росішки</td>
-      <td class="td-right">№<span class="e" id="d_num">0000-ОД</span></td>
+      <td class="meta-left"><span class="e" id="d_date">00.00.2026</span></td>
+      <td class="meta-mid">с. Росішки</td>
+      <td class="meta-right">№<span class="e" id="d_num">0000-ОД</span></td>
     </tr>
   </table>
+  <hr class="meta-line">
 
   <!-- Заголовок наказу -->
-  <p class="subject">Про отримання поранення (травми, контузії, каліцтва) солдатом <span class="e" id="d_fio_nom">ІВАНОВ Тимофій Тимофійович</span> під час виконання бойового завдання</p>
+  <p class="subject">Про отримання поранення (травми, контузії, каліцтва) солдатом <span class="e" id="d_fio_oru_h">Івановим Тимофієм Тимофійовичем</span> під час виконання бойового завдання</p>
 
-  <!-- Абзац 1 -->
-  <p class="par">Відповідно до рапорту командира 2 єгерського батальйону військової частини А4948 підполковника ДРОЗДЕНКА Сергія Володимировича від <span class="e" id="d_rap_d">27.08.2026</span> №<span class="e" id="d_rap_n">845/вн</span> солдат <span class="e" id="d_fio_nom2">ІВАНОВ Тимофій Тимофійович</span>, <span class="e" id="d_posada">стрілець 1 єгерського відділення 2 єгерського взводу 3 єгерської роти 2 єгерського батальйону</span> військової частини А4948, орієнтовно о <span class="e" id="d_wtime">15:30</span> <span class="e" id="d_wdate">27.08.2026</span> отримав поранення на позиції відділення «<span class="e" id="d_pos">Верба-17</span>».</p>
+  <!-- ── ТЕКСТ ── -->
 
-  <!-- Абзац 2 -->
-  <p class="par">Солдат <span class="e" id="d_sni1">ІВАНОВ Т.Т.</span>, <span class="e" id="d_dob">30.02.1979 р.н.</span>, особистий номер <span class="e" id="d_osobnum">1907412631</span>, військовослужбовець військової служби за призовом під час мобілізації, на особливий період, перебував у районах ведення бойових дій на підставі наказу командира військової частини А4948 (по стройовій частині) від <span class="e" id="d_n1d">25.08.2026</span> №<span class="e" id="d_n1n">242</span> про прибуття до складу сил та засобів військової частини А4948, та у складі 2 єгерського батальйону виконував бойові завдання згідно з бойовим розпорядженням командира військової частини А4948 від <span class="e" id="d_n2d">05.10.2026</span> №<span class="e" id="d_n2n">10936/ОКП/дск</span> та бойового розпорядження командира 2 єгерського батальйону військової частини А4948 від <span class="e" id="d_n3d">06.10.2026</span> №<span class="e" id="d_n3n">1546/КСП/2єб/дск</span>.</p>
+  <p class="par">Відповідно до рапорту командира 2 єгерського батальйону військової частини А4948 підполковника ДРОЗДЕНКА Сергія Володимировича від <span class="e" id="d_rap_d">27.08.2026</span> №<span class="e" id="d_rap_n">845/вн</span> солдат <span class="e" id="d_fio_nom2">ІВАНОВ Тимофій Тимофійович</span>, <span class="e" id="d_posada">стрілець 1&nbsp;єгерського відділення 2 єгерського взводу 3 єгерської роти 2&nbsp;єгерського батальйону</span> військової частини А4948, орієнтовно о <span class="e" id="d_wtime">15:30</span> <span class="e" id="d_wdate">27.08.2026</span> отримав поранення на позиції відділення «<span class="e" id="d_pos">Верба-17</span>».</p>
 
-  <!-- Абзац 3 -->
+  <p class="par">Солдат <span class="e" id="d_sni1">ІВАНОВ Т.Т.</span>, <span class="e" id="d_dob">30.02.1979 р.н.</span>, особистий номер <span class="e" id="d_osobnum">1907412631</span>, військовослужбовець військової служби за призовом під час мобілізації, на особливий період, перебував у районах ведення бойових дій на підставі наказу командира військової частини А4948 (по стройовій частині) від <span class="e" id="d_n1d">25.08.2026</span> №<span class="e" id="d_n1n">242</span> про прибуття до складу сил та засобів військової частини А4948, та у складі 2&nbsp;єгерського батальйону виконував бойові завдання згідно з бойовим розпорядженням командира військової частини А4948 від <span class="e" id="d_n2d">05.10.2026</span> №<span class="e" id="d_n2n">10936/ОКП/дск</span> та бойового розпорядження командира 2 єгерського батальйону військової частини А4948 від <span class="e" id="d_n3d">06.10.2026</span> №<span class="e" id="d_n3n">1546/КСП/2єб/дск</span>.</p>
+
   <p class="par">У складі 2 механізованого взводу 3 механізованої роти солдат <span class="e" id="d_sni2">ІВАНОВ Т.Т.</span> брав участь у веденні оборонного бою на позиції відділення у районі північних околиць населеного пункту <span class="e" id="d_locality">СЕРГІЇВКА Покровського району Донецької області</span> та зазнав поранення в результаті застосування противником (збройними силами Російської Федерації) <span class="e" id="d_prychyna">керованої авіабомби, що влучила по позиції відділення «Верба-17»</span>, тобто в результаті бойового ураження. Первинна медична допомога надалась на місці, а надалі він був евакуйований для надання медичної допомоги до стабілізаційного пункту <span class="e" id="d_stab">зведеного загону військової частини А4921</span>.</p>
 
-  <!-- Абзац 4 — діагноз -->
   <p class="par">Попередній діагноз у солдата <span class="e" id="d_snr1">ІВАНОВА Т.Т.</span>, згідно з первинною медичною карткою форми 001/о від <span class="e" id="d_med_date">27.08.2026</span> № <span class="e" id="d_med_num">1374</span>: <span class="e" id="d_diagnoz">вибухова травма (27.08.2026), вогнепальне уламкове дотичне поранення, акубаротравма без пошкодження цілісності барабанної перетинки праворуч. Забій попереку.</span></p>
 
-  <!-- Абзац 5 -->
   <p class="par">Після надання першої медичної допомоги солдат <span class="e" id="d_sni3">ІВАНОВ Т.Т.</span> був доставлений для подальшого лікування до <span class="e" id="d_hospital">Військово-медичного клінічного центру Північного регіону</span>.</p>
 
-  <!-- Абзац 6 — свідок -->
-  <p class="par">Свідком отримання поранення солдатом <span class="e" id="d_fio_oru">ІВАНОВИМ Тимофієм Тимофійовичем</span> був: <span class="e" id="d_sv_rank">сержант</span> <span class="e" id="d_sv_fio">СТАДНИК Володимир Петрович</span> <span class="e" id="d_sv_pos">начальник групи логістики штабу 2 єгерського батальйону військової частини А4948</span>.</p>
+  <p class="par">Свідком отримання поранення солдатом <span class="e" id="d_fio_oru_s">ІВАНОВИМ Т.Т.</span> був: <span class="e" id="d_sv_rank">сержант</span> <span class="e" id="d_sv_fio">СТАДНИК Володимир Петрович</span> <span class="e" id="d_sv_pos">начальник групи логістики штабу 2 єгерського батальйону військової частини А4948</span>.</p>
 
-  <!-- Абзац 7 — журнал -->
   <p class="par">Про поранення солдата <span class="e" id="d_snr2">ІВАНОВА Т.Т.</span> внесені відомості до журналу бойових дій військової частини А4948 (інв. № <span class="e" id="d_jurn">3нт/6т від 01.01.2025</span>) за <span class="e" id="d_wdate2">27.08.2026</span>.</p>
 
-  <!-- Абзац 8 — обставини -->
   <p class="par">Під час отримання бойового травмування (поранення) солдат <span class="e" id="d_sni4">ІВАНОВ Т.Т.</span> перебував в засобах індивідуального захисту (відповідно до вимог додатку 1 Бойового статуту Сухопутних військ Збройних Сил України, частина ІІІ (взвод, відділення, екіпаж), не вчиняв дій, що містять ознаки кримінального або адміністративного правопорушення, не перебував у стані алкогольного сп'яніння або під впливом наркотичних чи інших отруйних речовин, не вчиняв дій, пов'язаних із навмисним заподіянням шкоди своєму здоров'ю, не використовував в особистих цілях без відома командування транспортних засобів, озброєння, устаткування, інструментів та матеріалів, які належать військовій частині.</p>
 
-  <!-- Абзац 9 — закон -->
-  <p class="par">Відповідно до частини 4 статті 24 Закону України «Про військовий обов'язок і військову службу» солдат <span class="e" id="d_sni5">ІВАНОВ Т.Т.</span> вважається таким, що виконував обов'язки військової служби та травми (поранення) ним отримані під час виконання бойового завдання на виконання конституційного обов'язку щодо оборони України, захисту її суверенітету, територіальної цілісності і недоторканності, тобто під час виконання заходів із забезпечення національної безпеки і оборони, відсічі і стримування збройної агресії Російської Федерації.</p>
+  <p class="par">Відповідно до частини 4 статті 24 Закону України «Про військовий обов'язок і військову службу» солдат <span class="e" id="d_sni5">ІВАНОВ Т.Т.</span> вважається таким, що виконував обов'язки військової служби та травми (поранення) ним отримані під час виконання бойового завдання на виконання конституційного обов'язку щодо оборони України, захисту її суверенітету, територіальної цілісності і&nbsp;недоторканності, тобто під час виконання заходів із забезпечення національної безпеки і оборони, відсічі і стримування збройної агресії Російської Федерації.</p>
 
-  <!-- Підстава -->
   <p class="par">На підставі викладеного, відповідно до вимог частини 5 статті 260 Статуту внутрішньої служби Збройних Сил України,</p>
 
+  <p style="margin-bottom:6pt;">&nbsp;</p>
   <p class="nakaz-word">НАКАЗУЮ:</p>
+  <p style="margin-bottom:6pt;">&nbsp;</p>
 
   <!-- Пункт 1 -->
-  <p class="punkt"><b>1.</b>&nbsp;&nbsp;Вважати встановленим, що солдат <span class="e" id="d_fio_nom3">ІВАНОВ Тимофій Тимофійович</span>, <span class="e" id="d_dob2">30.02.1979 р.н.</span>, <span class="e" id="d_posada2">стрілець 1 єгерського відділення 2 єгерського взводу 3 єгерської роти 2 єгерського батальйону</span> військової частини А4948, <span class="e" id="d_wdate3">27.08.2026</span> отримав травми (поранення) в результаті бойових уражень противника під час безпосередньої участі у заходах, необхідних для забезпечення оборони України, захисту безпеки населення та інтересів держави у зв'язку з військовою агресією проти України, тобто під час захисту Батьківщини.</p>
+  <p class="punkt"><b>1.</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Вважати встановленим, що солдат <span class="e" id="d_fio_nom3">ІВАНОВ Тимофій Тимофійович</span>, <span class="e" id="d_dob2">30.02.1979 р.н.</span>, <span class="e" id="d_posada2">стрілець 1 єгерського відділення 2&nbsp;єгерського взводу 3 єгерської роти 2 єгерського батальйону</span> військової частини А4948, <span class="e" id="d_wdate3">27.08.2026</span> отримав травми (поранення) в результаті бойових уражень противника під час безпосередньої участі у заходах, необхідних для забезпечення оборони України, захисту безпеки населення та інтересів держави у зв'язку з військовою агресією проти України, тобто під час захисту Батьківщини.</p>
+
+  <p style="margin-bottom:4pt;">&nbsp;</p>
 
   <!-- Пункт 2 -->
-  <p class="punkt"><b>2.</b>&nbsp;&nbsp;Начальнику медичної служби військової частини А4948 в п'ятиденний термін з дня отримання первинного облікового медичного документа відповідно до пункту 1.9 глави 1, пункту 6.2 глави 6 та абзацу третього пункту 21.7 глави 21 розділу ІІ Положення про військово-лікарську експертизу в Збройних Силах України, затвердженого наказом Міністра оборони України від 14.08.2008 № 402, скласти довідку про обставини поранення солдата <span class="e" id="d_snr3">ІВАНОВА Т.Т.</span> у чотирьох примірниках та надати перший примірник до відділення персоналу штабу для занесення до особової справи, другий примірник надати безпосередньо військовослужбовцю, третій примірник передати до фінансово-економічної служби для врахування при проведенні розрахунків виплат у зв'язку з отриманням бойових травм, а четвертий примірник направити до медичного закладу, де проходить лікування солдат <span class="e" id="d_sni6">ІВАНОВ Т.Т.</span> для врахування при проведенні його огляду військово-лікарською комісією.</p>
+  <p class="punkt"><b>2.</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Начальнику медичної служби військової частини А4948 в&nbsp;п'ятиденний термін з дня отримання первинного облікового медичного документа відповідно до пункту 1.9 глави 1, пункту 6.2 глави 6 та абзацу третього пункту 21.7 глави 21 розділу ІІ Положення про військово-лікарську експертизу в&nbsp;Збройних Силах України, затвердженого наказом Міністра оборони України від 14.08.2008 № 402, скласти довідку про обставини поранення солдата <span class="e" id="d_snr3">ІВАНОВА&nbsp;Т.Т.</span> у чотирьох примірниках та надати перший примірник до відділення персоналу штабу для занесення до особової справи, другий примірник надати безпосередньо військовослужбовцю, третій примірник передати до фінансово-економічної служби для врахування при проведенні розрахунків виплат у зв'язку з отриманням бойових травм, а четвертий примірник направити до медичного закладу, де проходить лікування солдат <span class="e" id="d_sni6">ІВАНОВ Т.Т.</span> для врахування при проведенні його огляду військово-лікарською комісією.</p>
+
+  <p style="margin-bottom:4pt;">&nbsp;</p>
 
   <!-- Пункт 3 -->
-  <p class="punkt"><b>3.</b>&nbsp;&nbsp;Начальнику адміністративної групи штабу військової частини А4948 довести наказ до особового складу в частині, що його стосується.</p>
+  <p class="punkt"><b>3.</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Начальнику адміністративної групи штабу військової частини А4948 довести наказ до особового складу в частині, що його стосується.</p>
+
+  <p style="margin-bottom:4pt;">&nbsp;</p>
 
   <!-- Пункт 4 -->
-  <p class="punkt"><b>4.</b>&nbsp;&nbsp;Контроль за виконанням наказу покласти на начальника штабу – заступника командира військової частини А4948.</p>
+  <p class="punkt"><b>4.</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Контроль за виконанням наказу покласти на начальника штабу – заступника командира військової частини А4948.</p>
 
-  <br>
-  <p class="par-no-indent"><b>Додатки:</b></p>
-  <p class="par-no-indent">1. Копія рапорту командира підрозділу про подію, на 1 арк., в 1 прим.;</p>
-  <p class="par-no-indent">2. Копія первинної медичної документації (форма 001/о від <span class="e" id="d_med_date2">00.00.2026</span>), на 1 арк., в 1 прим.;</p>
-  <p class="par-no-indent">3. Витяг із журналу бойових дій підрозділу, на 1 арк., в 1 прим.;</p>
-  <p class="par-no-indent">4. Копія довідки-доповіді про подію, на 1 арк., в 1 прим.</p>
+  <p style="margin-bottom:6pt;">&nbsp;</p>
 
+  <!-- Додатки -->
+  <p class="par-0"><b>Додатки:</b></p>
+  <p class="par-0">1. Копія рапорту командира підрозділу про подію, на 1 арк., в 1 прим.;</p>
+  <p class="par-0">2. Копія первинної медичної документації (форма 001/о від <span class="e" id="d_med_date2">00.00.2026</span>), на&nbsp;1&nbsp;арк., в 1 прим.;</p>
+  <p class="par-0">3. Витяг із журналу бойових дій підрозділу, на 1 арк., в 1 прим.;</p>
+  <p class="par-0">4. Копія довідки-доповіді про подію, на 1 арк., в 1 прим.</p>
+
+  <!-- Підпис командира -->
   <table class="sig-table">
     <tr>
-      <td class="td-left">Командир військової частини А4948</td>
-      <td class="td-right"></td>
+      <td class="sig-l">Командир військової частини А4948</td>
+      <td class="sig-r"></td>
     </tr>
     <tr>
-      <td class="td-left"><span class="e" id="d_kdr_rank">полковник</span></td>
-      <td class="td-right"><span class="e" id="d_kdr_name">Валерій ЛИС</span></td>
+      <td class="sig-l"><span class="e" id="d_kdr_rank">полковник</span></td>
+      <td class="sig-r"><span class="e" id="d_kdr_name">Валерій ЛИС</span></td>
     </tr>
   </table>
 
-  <div class="bottom-stamp">Відкрита інформація</div>
+  <!-- Нижній штамп -->
+  <div class="stamp1">Відкрита інформація</div>
 
 </div><!-- /page1 -->
+
 
 <!-- ========== СТОРІНКА 2 ========== -->
 <div class="page" id="page2">
 
-  <div class="page2-header">
+  <div class="p2-top">
     ВІДКРИТА ІНФОРМАЦІЯ<br>
     (Обмежено в розповсюдженні – лише для Збройних Сил України)
   </div>
 
-  <p class="pogodzheno-title">ПОГОДЖЕНО:</p>
+  <p class="pogodz">ПОГОДЖЕНО:</p>
 
-  <div class="pog-block">
-    <p>Тимчасово виконуючий обов'язки начальника штабу – заступника командира військової частини А4948</p>
-    <table class="sig2-table">
+  <!-- Блок 1 -->
+  <div class="pog-blk">
+    <p>Тимчасово виконуючий обов'язки начальника штабу – заступника командира військової частини А4948&nbsp;</p>
+    <table class="pog-sig">
       <tr>
-        <td class="td-rank">майор</td>
-        <td class="td-name">Валерій АВРАМЕНКО</td>
+        <td class="ps-l">майор</td>
+        <td class="ps-r">Валерій АВРАМЕНКО</td>
       </tr>
     </table>
-    <p style="font-size:10pt;">___.___.2026</p>
+    <p class="date-line">___.___.2026</p>
   </div>
 
-  <div class="pog-block">
+  <!-- Блок 2 -->
+  <div class="pog-blk">
     <p>Зміст документа вимогам чинного законодавства відповідає. Негативних правових наслідків реалізація положень документа, у тому числі порушень законодавства, що можуть створити передумови для нанесення економічних збитків державі, не прогнозується.</p>
-    <br>
-    <p>Помічник командира військової частини з правової роботи – начальник юридичної служби військової частини А4948</p>
-    <table class="sig2-table">
+    <p>&nbsp;</p>
+    <p>Помічник командира військової частини з&nbsp;правової роботи – начальник юридичної служби військової частини А4948</p>
+    <table class="pog-sig">
       <tr>
-        <td class="td-rank">майор юстиції</td>
-        <td class="td-name">Сергій ЛИТВИНОВ</td>
+        <td class="ps-l">майор юстиції</td>
+        <td class="ps-r">Сергій ЛИТВИНОВ</td>
       </tr>
     </table>
-    <p style="font-size:10pt;">___.___.2026</p>
+    <p class="date-line">___.___.2026</p>
   </div>
 
-  <div class="pog-block">
+  <!-- Блок 3 -->
+  <div class="pog-blk">
     <p>Оформлення документу відповідає вимогам наказу ГК ЗС України від 31 січня 2024 року № 40 «Про затвердження Інструкції з діловодства у Збройних Силах України»</p>
-    <br>
-    <p>Тимчасово виконуючий обов'язки начальника стройової частини відділення персоналу штабу військової частини А4948</p>
-    <table class="sig2-table">
+    <p>&nbsp;</p>
+    <p>Тимчасово виконуючий обов'язки начальника стройової частини відділення персоналу штабу військової частини&nbsp;А4948</p>
+    <table class="pog-sig">
       <tr>
-        <td class="td-rank">старший лейтенант</td>
-        <td class="td-name">Артем ПЕТРЕНКО</td>
+        <td class="ps-l">старший лейтенант</td>
+        <td class="ps-r">Артем ПЕТРЕНКО</td>
       </tr>
     </table>
-    <p style="font-size:10pt;">___.___.2026</p>
+    <p class="date-line">___.___.2026</p>
   </div>
 
-  <div class="pog-block">
+  <!-- Блок 4 -->
+  <div class="pog-blk">
     <p>Підготував</p>
     <p>Начальник групи з'ясування обставин, причин та умов вчинення правопорушень військової частини А4948</p>
-    <table class="sig2-table">
+    <table class="pog-sig">
       <tr>
-        <td class="td-rank">старший лейтенант</td>
-        <td class="td-name">Руслан ЗАХАРЧЕНКО</td>
+        <td class="ps-l">старший лейтенант</td>
+        <td class="ps-r">Руслан ЗАХАРЧЕНКО</td>
       </tr>
     </table>
-    <p style="font-size:10pt;">___.___.2026</p>
+    <p class="date-line">___.___.2026</p>
   </div>
 
-  <div class="dov-block">
-    <p>Доведено:</p>
-    <table class="dov-table">
-      <tr>
-        <td>(дата, підпис, ініціали та прізвище)</td>
-        <td>(дата, підпис, ініціали та прізвище)</td>
-      </tr>
-      <tr>
-        <td style="height:22pt;">&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>(дата, підпис, ініціали та прізвище)</td>
-        <td>(дата, підпис, ініціали та прізвище)</td>
-      </tr>
-      <tr>
-        <td style="height:22pt;">&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-    </table>
-  </div>
+  <!-- Доведено -->
+  <p class="dov-title">Доведено:</p>
+  <table class="dov-table">
+    <tr>
+      <td class="dov-line">(дата, підпис, ініціали та прізвище)</td>
+      <td class="dov-line">(дата, підпис, ініціали та прізвище)</td>
+    </tr>
+    <tr>
+      <td style="height:20pt;border-bottom:1px solid #000;">&nbsp;</td>
+      <td style="height:20pt;border-bottom:1px solid #000;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="dov-line">(дата, підпис, ініціали та прізвище)</td>
+      <td class="dov-line">(дата, підпис, ініціали та прізвище)</td>
+    </tr>
+    <tr>
+      <td style="height:20pt;">&nbsp;</td>
+      <td style="height:20pt;">&nbsp;</td>
+    </tr>
+  </table>
 
-  <div class="bottom-stamp">
+  <div class="p2-top2">
     ВІДКРИТА ІНФОРМАЦІЯ<br>
     (Обмежено в розповсюдженні – лише для Збройних Сил України)
   </div>
@@ -592,87 +665,97 @@ p { margin: 0; }
 </div><!-- /page2 -->
 </div><!-- /doc-wrapper -->
 
+
 <!-- ==================== JAVASCRIPT ==================== -->
 <script>
-/* ---------- Оновити документ ---------- */
 function updateDoc() {
   const g = id => document.getElementById(id).value.trim();
 
-  const fio_nom  = g('f_fio_nom');
-  const ini      = g('f_ini');
-  const sur_rod  = g('f_sur_rod');
-  const fio_oru  = g('f_fio_oru');
-  const posada   = g('f_posada');
-  const dob      = g('f_dob');
-  const osobnum  = g('f_osobnum');
-  const wdate    = g('f_wdate');
-  const wtime    = g('f_wtime');
-  const pos      = g('f_pos');
-  const locality = g('f_locality');
-  const prychyna = g('f_prychyna');
-  const med_date = g('f_med_date');
-  const med_num  = g('f_med_num');
-  const diagnoz  = g('f_diagnoz');
-  const stab     = g('f_stab');
-  const hospital = g('f_hospital');
-  const sv_rank  = g('f_sv_rank');
-  const sv_fio   = g('f_sv_fio');
-  const sv_pos   = g('f_sv_pos');
-  const rap_d    = g('f_rap_d');
-  const rap_n    = g('f_rap_n');
-  const n1d      = g('f_n1d');
-  const n1n      = g('f_n1n');
-  const n2d      = g('f_n2d');
-  const n2n      = g('f_n2n');
-  const n3d      = g('f_n3d');
-  const n3n      = g('f_n3n');
-  const jurn     = g('f_jurn');
-  const kdr_rank = g('f_kdr_rank');
-  const kdr_name = g('f_kdr_name');
+  const fio_nom       = g('f_fio_nom');
+  const ini           = g('f_ini');
+  const sur_rod       = g('f_sur_rod');
+  const fio_oru       = g('f_fio_oru');
+  const fio_oru_short = g('f_fio_oru_short');
+  const posada        = g('f_posada');
+  const dob           = g('f_dob');
+  const osobnum       = g('f_osobnum');
+  const wdate         = g('f_wdate');
+  const wtime         = g('f_wtime');
+  const pos           = g('f_pos');
+  const locality      = g('f_locality');
+  const prychyna      = g('f_prychyna');
+  const med_date      = g('f_med_date');
+  const med_num       = g('f_med_num');
+  const diagnoz       = g('f_diagnoz');
+  const stab          = g('f_stab');
+  const hospital      = g('f_hospital');
+  const sv_rank       = g('f_sv_rank');
+  const sv_fio        = g('f_sv_fio');
+  const sv_pos        = g('f_sv_pos');
+  const rap_d         = g('f_rap_d');
+  const rap_n         = g('f_rap_n');
+  const n1d           = g('f_n1d');
+  const n1n           = g('f_n1n');
+  const n2d           = g('f_n2d');
+  const n2n           = g('f_n2n');
+  const n3d           = g('f_n3d');
+  const n3n           = g('f_n3n');
+  const jurn          = g('f_jurn');
+  const kdr_rank      = g('f_kdr_rank');
+  const kdr_name      = g('f_kdr_name');
 
-  // Скорочені форми: ІВАНОВ Т.Т. та ІВАНОВА Т.Т.
+  // Автоформи: ІВАНОВ Т.Т. (іменний) та ІВАНОВА Т.Т. (родовий)
   const sur_nom = fio_nom.split(' ')[0];
-  const sni = sur_nom + ' ' + ini;    // іменний: ІВАНОВ Т.Т.
-  const snr = sur_rod + ' ' + ini;    // родовий: ІВАНОВА Т.Т.
+  const sni = sur_nom + ' ' + ini;       // ІВАНОВ Т.Т.
+  const snr = sur_rod + ' ' + ini;       // ІВАНОВА Т.Т.
 
-  s('d_date',      g('f_date'));
-  s('d_num',       g('f_num'));
-  s('d_fio_nom',   fio_nom);
-  s('d_fio_nom2',  fio_nom);
-  s('d_fio_nom3',  fio_nom);
-  s('d_fio_oru',   fio_oru);
-  s('d_posada',    posada);
-  s('d_posada2',   posada);
-  s('d_dob',       dob);
-  s('d_dob2',      dob);
-  s('d_osobnum',   osobnum);
-  s('d_wdate',     wdate);
-  s('d_wdate2',    wdate);
-  s('d_wdate3',    wdate);
-  s('d_wtime',     wtime);
-  s('d_pos',       pos);
-  s('d_locality',  locality);
-  s('d_prychyna',  prychyna);
-  s('d_med_date',  med_date);
-  s('d_med_date2', med_date);
-  s('d_med_num',   med_num);
-  s('d_diagnoz',   diagnoz);
-  s('d_stab',      stab);
-  s('d_hospital',  hospital);
-  s('d_sv_rank',   sv_rank);
-  s('d_sv_fio',    sv_fio);
-  s('d_sv_pos',    sv_pos);
-  s('d_rap_d',     rap_d);
-  s('d_rap_n',     rap_n);
-  s('d_n1d',       n1d);
-  s('d_n1n',       n1n);
-  s('d_n2d',       n2d);
-  s('d_n2n',       n2n);
-  s('d_n3d',       n3d);
-  s('d_n3n',       n3n);
-  s('d_jurn',      jurn);
-  s('d_kdr_rank',  kdr_rank);
-  s('d_kdr_name',  kdr_name);
+  // Заголовок: перша літера велика, решта — малі (як в оригіналі Word)
+  // "солдатом Івановим Тимофієм Тимофійовичем"
+  const fio_oru_h = fio_oru.charAt(0).toUpperCase() +
+                    fio_oru.slice(1).toLowerCase().replace(/\b\w/g, (c,i) => {
+                      // Залишаємо першу літеру кожного слова великою
+                      return fio_oru.slice(i, i+1);
+                    });
+  // Простіше: передаємо значення поля як є (користувач сам вводить правильно)
+
+  s('d_date',       g('f_date'));
+  s('d_num',        g('f_num'));
+  s('d_fio_oru_h',  fio_oru);   // заголовок
+  s('d_fio_nom2',   fio_nom);
+  s('d_fio_nom3',   fio_nom);
+  s('d_fio_oru_s',  fio_oru_short); // свідок (орудний скорочений)
+  s('d_posada',     posada);
+  s('d_posada2',    posada);
+  s('d_dob',        dob);
+  s('d_dob2',       dob);
+  s('d_osobnum',    osobnum);
+  s('d_wdate',      wdate);
+  s('d_wdate2',     wdate);
+  s('d_wdate3',     wdate);
+  s('d_wtime',      wtime);
+  s('d_pos',        pos);
+  s('d_locality',   locality);
+  s('d_prychyna',   prychyna);
+  s('d_med_date',   med_date);
+  s('d_med_date2',  med_date);
+  s('d_med_num',    med_num);
+  s('d_diagnoz',    diagnoz);
+  s('d_stab',       stab);
+  s('d_hospital',   hospital);
+  s('d_sv_rank',    sv_rank);
+  s('d_sv_fio',     sv_fio);
+  s('d_sv_pos',     sv_pos);
+  s('d_rap_d',      rap_d);
+  s('d_rap_n',      rap_n);
+  s('d_n1d',        n1d);
+  s('d_n1n',        n1n);
+  s('d_n2d',        n2d);
+  s('d_n2n',        n2n);
+  s('d_n3d',        n3d);
+  s('d_n3n',        n3n);
+  s('d_jurn',       jurn);
+  s('d_kdr_rank',   kdr_rank);
+  s('d_kdr_name',   kdr_name);
 
   ['d_sni1','d_sni2','d_sni3','d_sni4','d_sni5','d_sni6'].forEach(id => s(id, sni));
   ['d_snr1','d_snr2','d_snr3'].forEach(id => s(id, snr));
@@ -683,84 +766,87 @@ function s(id, val) {
   if (el) el.textContent = val;
 }
 
-/* ---------- Копіювати текст ---------- */
+/* ── Копіювати текст ── */
 function copyText() {
-  const el = document.getElementById('doc-wrapper');
-  const text = el.innerText;
+  const text = document.getElementById('doc-wrapper').innerText;
   navigator.clipboard.writeText(text).then(() => {
-    const msg = document.getElementById('copy-msg');
-    msg.style.display = 'block';
-    setTimeout(() => { msg.style.display = 'none'; }, 3000);
+    showMsg();
   }).catch(() => {
-    // fallback
     const ta = document.createElement('textarea');
     ta.value = text;
     document.body.appendChild(ta);
     ta.select();
     document.execCommand('copy');
     document.body.removeChild(ta);
-    alert('Текст скопійовано!');
+    showMsg();
   });
 }
+function showMsg() {
+  const m = document.getElementById('copy-msg');
+  m.style.display = 'block';
+  setTimeout(() => m.style.display = 'none', 3000);
+}
 
-/* ---------- Зберегти .doc (Word) ---------- */
+/* ── Зберегти .doc ── */
 function saveDocx() {
-  // Знімаємо жовте підсвічування для Word-файлу
+  // Знімаємо жовтий фон для збереження
   const wrapper = document.getElementById('doc-wrapper');
   const spans = wrapper.querySelectorAll('.e');
   spans.forEach(sp => sp.style.background = 'transparent');
 
-  const docHtml = wrapper.innerHTML;
+  const body = wrapper.innerHTML;
 
-  // Повертаємо жовте назад
   spans.forEach(sp => sp.style.background = '');
 
   const html = `<html xmlns:o='urn:schemas-microsoft-com:office:office'
 xmlns:w='urn:schemas-microsoft-com:office:word'
 xmlns='http://www.w3.org/TR/REC-html40'>
-<head>
-<meta charset="UTF-8">
+<head><meta charset="UTF-8">
 <!--[if gte mso 9]><xml>
 <w:WordDocument>
-  <w:View>Print</w:View>
-  <w:Zoom>100</w:Zoom>
+  <w:View>Print</w:View><w:Zoom>100</w:Zoom>
   <w:DoNotOptimizeForBrowser/>
-</w:WordDocument>
-</xml><![endif]-->
+</w:WordDocument></xml><![endif]-->
 <style>
 @page { size:210mm 297mm; margin:20mm 15mm 20mm 30mm; }
-body  { font-family:'Times New Roman',Times,serif; font-size:14pt; margin:0; }
+body  { font-family:'Times New Roman',Times,serif; font-size:14pt; }
 .e   { background:transparent; }
-.page { margin:0; padding:0; }
-p    { margin-bottom:6pt; }
-.par { text-align:justify; text-indent:1.25cm; margin-bottom:6pt; }
-.par-no-indent { text-align:justify; margin-bottom:4pt; }
+.par { text-align:justify; text-indent:1.25cm; margin-bottom:6pt; font-size:14pt; }
+.par-0 { text-align:justify; margin-bottom:4pt; font-size:14pt; }
+.header-logo { text-align:center; }
 .ministry  { text-align:center; font-weight:bold; font-size:14pt; }
 .doc-title { text-align:center; font-weight:bold; font-size:16pt; }
 .doc-subtitle { text-align:center; font-size:14pt; }
-.subject   { text-align:center; font-weight:bold; font-size:14pt; margin:8pt 0 14pt; }
-.nakaz-word{ text-align:center; font-weight:bold; font-size:15pt; margin:14pt 0 8pt; }
-.punkt     { text-align:justify; text-indent:1.25cm; margin-bottom:8pt; font-size:14pt; }
-.header-row,.sig-table,.sig2-table,.dov-table { width:100%; border-collapse:collapse; }
-.td-left  { text-align:left; }
-.td-mid   { text-align:center; }
-.td-right { text-align:right; }
-.td-rank  { text-align:left; width:40%; }
-.td-name  { text-align:right; width:60%; }
-.bottom-stamp { border-top:1px solid #000; font-size:9pt; text-align:center; padding-top:3pt; margin-top:28pt; }
-.page2-header { text-align:center; font-size:9pt; border-bottom:1px solid #000; padding-bottom:4pt; }
-.pogodzheno-title { font-weight:bold; font-size:14pt; }
-.pog-block { margin-bottom:18pt; font-size:14pt; }
-.dov-table td { border-bottom:1px solid #000; font-size:9pt; height:22pt; }
-</style>
-</head>
-<body lang="uk-UA">${docHtml}</body></html>`;
+.subject   { text-align:center; font-weight:bold; font-size:14pt; margin:8pt 0 12pt; }
+.nakaz-word{ text-align:center; font-weight:bold; font-size:14pt; }
+.punkt     { text-align:justify; font-size:14pt; margin-bottom:6pt; padding-left:1.25cm; }
+.meta-row  { width:100%; border-collapse:collapse; }
+.meta-left { text-align:left; width:33%; font-size:14pt; }
+.meta-mid  { text-align:center; width:34%; font-size:14pt; }
+.meta-right{ text-align:right; width:33%; font-size:14pt; }
+.meta-line { border-top:1px solid #000; margin:0 0 8pt; }
+.sig-table { width:100%; border-collapse:collapse; margin-top:14pt; }
+.sig-l { text-align:left; font-size:14pt; }
+.sig-r { text-align:right; font-size:14pt; }
+.stamp1{ text-align:center; font-size:9pt; margin-top:24pt; }
+.p2-top{ text-align:center; font-size:9pt; border-bottom:1px solid #000; padding-bottom:4pt; }
+.p2-top2{ text-align:center; font-size:9pt; border-top:1px solid #000; margin-top:14pt; }
+.pogodz{ font-weight:bold; font-size:14pt; }
+.pog-blk{ margin-bottom:16pt; font-size:14pt; }
+.pog-sig{ width:100%; border-collapse:collapse; }
+.ps-l{ text-align:left; width:45%; font-size:14pt; }
+.ps-r{ text-align:right; width:55%; font-size:14pt; }
+.dov-title{ font-weight:bold; font-size:14pt; }
+.dov-table{ width:100%; border-collapse:collapse; }
+.dov-table td{ width:50%; font-size:9pt; }
+</style></head>
+<body lang="uk-UA">${body}</body></html>`;
 
   const blob = new Blob(['\ufeff' + html], { type: 'application/msword;charset=utf-8' });
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
-  const sur  = document.getElementById('f_fio_nom').value.split(' ')[0] || 'nakaz';
-  const dt   = document.getElementById('f_date').value.replace(/\./g,'-');
+  const sur  = document.getElementById('f_fio_nom').value.split(' ')[0] || 'Nakaz';
+  const dt   = document.getElementById('f_date').value.replace(/\./g, '-');
   a.href     = url;
   a.download = `Nakaz_${sur}_${dt}.doc`;
   document.body.appendChild(a);
@@ -769,11 +855,11 @@ p    { margin-bottom:6pt; }
   URL.revokeObjectURL(url);
 
   setTimeout(() => {
-    alert('Файл збережено!\n\n• Word: просто відкрийте .doc файл\n• Google Docs: drive.google.com → Нове → Завантажити файл → відкрити через Google Docs');
+    alert('Файл збережено!\n\nВідкрити у Word: двічі клікніть .doc файл\nGoogle Docs: завантажте через drive.google.com');
   }, 400);
 }
 
-// Автозаповнення при завантаженні
+// Автозаповнення при завантаженні сторінки
 window.onload = updateDoc;
 </script>
 </body>
