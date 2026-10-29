@@ -283,15 +283,6 @@ p { margin: 0; }
   <h2>✏️ Заповніть жовті поля та натисніть «Оновити»</h2>
   <div class="fields-grid">
 
-    <div>
-      <label>Дата наказу</label>
-      <input id="f_date" value="00.00.2026">
-    </div>
-    <div>
-      <label>Номер наказу</label>
-      <input id="f_num" value="0000-ОД">
-    </div>
-
     <div class="field-full">
       <label>ПІБ — іменний відмінок (ПРІЗВИЩЕ Ім'я По-батькові)</label>
       <input id="f_fio_nom" value="ІВАНОВ Тимофій Тимофійович">
@@ -303,10 +294,6 @@ p { margin: 0; }
     <div>
       <label>ПРІЗВИЩЕ родовий відмінок (ІВАНОВА)</label>
       <input id="f_sur_rod" value="ІВАНОВА">
-    </div>
-    <div class="field-full">
-      <label>ПІБ орудний відмінок — у заголовку (ІВАНОВИМ Тимофієм Тимофійовичем)</label>
-      <input id="f_fio_oru" value="ІВАНОВИМ Тимофієм Тимофійовичем">
     </div>
     <div class="field-full">
       <label>ПІБ орудний скорочений — у тексті (ІВАНОВИМ Т.Т.)</label>
@@ -455,57 +442,6 @@ p { margin: 0; }
 <!-- ========== СТОРІНКА 1 ========== -->
 <div class="page" id="page1">
 
-  <!-- ГЕРБ — по центру зверху, як у Word-оригіналі -->
-  <div class="header-logo">
-    <!--
-      Офіційний малий герб України (тризуб у щиті).
-      Чорно-білий варіант — для офіційних документів.
-    -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160" width="46" height="61">
-      <!-- Щит — білий з чорним контуром -->
-      <path d="M6,6 L114,6 L114,118 Q60,155 6,118 Z"
-            fill="#ffffff" stroke="#000000" stroke-width="5"/>
-      <!-- Тризуб чорний -->
-      <g fill="#000000">
-        <!-- ліва вертикаль -->
-        <rect x="27" y="54" width="14" height="56"/>
-        <!-- ліва арка -->
-        <path d="M27,54 Q27,18 34,14 Q41,18 41,54Z"/>
-        <!-- права вертикаль -->
-        <rect x="79" y="54" width="14" height="56"/>
-        <!-- права арка -->
-        <path d="M79,54 Q79,18 86,14 Q93,18 93,54Z"/>
-        <!-- центральна вертикаль -->
-        <rect x="53" y="68" width="14" height="42"/>
-        <!-- центральна арка -->
-        <path d="M53,68 Q53,26 60,20 Q67,26 67,68Z"/>
-        <!-- горизонтальна перекладина -->
-        <rect x="22" y="82" width="76" height="11"/>
-      </g>
-    </svg>
-  </div>
-
-  <p class="ministry">МІНІСТЕРСТВО ОБОРОНИ УКРАЇНИ</p>
-  <p style="margin-bottom:4pt;">&nbsp;</p>
-  <p class="doc-title">НАКАЗ</p>
-  <p style="margin-bottom:2pt;">&nbsp;</p>
-  <p class="doc-subtitle">командира військової частини А4948</p>
-  <p class="doc-subtitle">(з основної діяльності)</p>
-  <p style="margin-bottom:4pt;">&nbsp;</p>
-
-  <!-- Рядок: дата / місто / номер -->
-  <table class="meta-row">
-    <tr>
-      <td class="meta-left"><span class="e" id="d_date">00.00.2026</span></td>
-      <td class="meta-mid">с. Росішки</td>
-      <td class="meta-right">№<span class="e" id="d_num">0000-ОД</span></td>
-    </tr>
-  </table>
-  <hr class="meta-line">
-
-  <!-- Заголовок наказу -->
-  <p class="subject">Про отримання поранення (травми, контузії, каліцтва) солдатом <span class="e" id="d_fio_oru_h">Івановим Тимофієм Тимофійовичем</span> під час виконання бойового завдання</p>
-
   <!-- ── ТЕКСТ ── -->
 
   <p class="par">Відповідно до рапорту командира 2 єгерського батальйону військової частини А4948 підполковника ДРОЗДЕНКА Сергія Володимировича від <span class="e" id="d_rap_d">27.08.2026</span> №<span class="e" id="d_rap_n">845/вн</span> солдат <span class="e" id="d_fio_nom2">ІВАНОВ Тимофій Тимофійович</span>, <span class="e" id="d_posada">стрілець 1&nbsp;єгерського відділення 2 єгерського взводу 3 єгерської роти 2&nbsp;єгерського батальйону</span> військової частини А4948, орієнтовно о <span class="e" id="d_wtime">15:30</span> <span class="e" id="d_wdate">27.08.2026</span> отримав поранення на позиції відділення «<span class="e" id="d_pos">Верба-17</span>».</p>
@@ -559,114 +495,9 @@ p { margin: 0; }
   <p class="par-0">3. Витяг із журналу бойових дій підрозділу, на 1 арк., в 1 прим.;</p>
   <p class="par-0">4. Копія довідки-доповіді про подію, на 1 арк., в 1 прим.</p>
 
-  <!-- Підпис командира -->
-  <table class="sig-table">
-    <tr>
-      <td class="sig-l">Командир військової частини А4948</td>
-      <td class="sig-r"></td>
-    </tr>
-    <tr>
-      <td class="sig-l"><span class="e" id="d_kdr_rank">полковник</span></td>
-      <td class="sig-r"><span class="e" id="d_kdr_name">Валерій ЛИС</span></td>
-    </tr>
-  </table>
-
-  <!-- Нижній штамп -->
-  <div class="stamp1">Відкрита інформація</div>
-
 </div><!-- /page1 -->
 
 
-<!-- ========== СТОРІНКА 2 ========== -->
-<div class="page" id="page2">
-
-  <div class="p2-top">
-    ВІДКРИТА ІНФОРМАЦІЯ<br>
-    (Обмежено в розповсюдженні – лише для Збройних Сил України)
-  </div>
-
-  <p class="pogodz">ПОГОДЖЕНО:</p>
-
-  <!-- Блок 1 -->
-  <div class="pog-blk">
-    <p>Тимчасово виконуючий обов'язки начальника штабу – заступника командира військової частини А4948&nbsp;</p>
-    <table class="pog-sig">
-      <tr>
-        <td class="ps-l">майор</td>
-        <td class="ps-r">Валерій АВРАМЕНКО</td>
-      </tr>
-    </table>
-    <p class="date-line">___.___.2026</p>
-  </div>
-
-  <!-- Блок 2 -->
-  <div class="pog-blk">
-    <p>Зміст документа вимогам чинного законодавства відповідає. Негативних правових наслідків реалізація положень документа, у тому числі порушень законодавства, що можуть створити передумови для нанесення економічних збитків державі, не прогнозується.</p>
-    <p>&nbsp;</p>
-    <p>Помічник командира військової частини з&nbsp;правової роботи – начальник юридичної служби військової частини А4948</p>
-    <table class="pog-sig">
-      <tr>
-        <td class="ps-l">майор юстиції</td>
-        <td class="ps-r">Сергій ЛИТВИНОВ</td>
-      </tr>
-    </table>
-    <p class="date-line">___.___.2026</p>
-  </div>
-
-  <!-- Блок 3 -->
-  <div class="pog-blk">
-    <p>Оформлення документу відповідає вимогам наказу ГК ЗС України від 31 січня 2024 року № 40 «Про затвердження Інструкції з діловодства у Збройних Силах України»</p>
-    <p>&nbsp;</p>
-    <p>Тимчасово виконуючий обов'язки начальника стройової частини відділення персоналу штабу військової частини&nbsp;А4948</p>
-    <table class="pog-sig">
-      <tr>
-        <td class="ps-l">старший лейтенант</td>
-        <td class="ps-r">Артем ПЕТРЕНКО</td>
-      </tr>
-    </table>
-    <p class="date-line">___.___.2026</p>
-  </div>
-
-  <!-- Блок 4 -->
-  <div class="pog-blk">
-    <p>Підготував</p>
-    <p>Начальник групи з'ясування обставин, причин та умов вчинення правопорушень військової частини А4948</p>
-    <table class="pog-sig">
-      <tr>
-        <td class="ps-l">старший лейтенант</td>
-        <td class="ps-r">Руслан ЗАХАРЧЕНКО</td>
-      </tr>
-    </table>
-    <p class="date-line">___.___.2026</p>
-  </div>
-
-  <!-- Доведено -->
-  <p class="dov-title">Доведено:</p>
-  <table class="dov-table">
-    <tr>
-      <td class="dov-line">(дата, підпис, ініціали та прізвище)</td>
-      <td class="dov-line">(дата, підпис, ініціали та прізвище)</td>
-    </tr>
-    <tr>
-      <td style="height:20pt;border-bottom:1px solid #000;">&nbsp;</td>
-      <td style="height:20pt;border-bottom:1px solid #000;">&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="dov-line">(дата, підпис, ініціали та прізвище)</td>
-      <td class="dov-line">(дата, підпис, ініціали та прізвище)</td>
-    </tr>
-    <tr>
-      <td style="height:20pt;">&nbsp;</td>
-      <td style="height:20pt;">&nbsp;</td>
-    </tr>
-  </table>
-
-  <div class="p2-top2">
-    ВІДКРИТА ІНФОРМАЦІЯ<br>
-    (Обмежено в розповсюдженні – лише для Збройних Сил України)
-  </div>
-
-</div><!-- /page2 -->
 </div><!-- /doc-wrapper -->
 
 
@@ -678,7 +509,6 @@ function updateDoc() {
   const fio_nom       = g('f_fio_nom');
   const ini           = g('f_ini');
   const sur_rod       = g('f_sur_rod');
-  const fio_oru       = g('f_fio_oru');
   const fio_oru_short = g('f_fio_oru_short');
   const posada        = g('f_posada');
   const dob           = g('f_dob');
@@ -710,24 +540,12 @@ function updateDoc() {
 
   // Автоформи: ІВАНОВ Т.Т. (іменний) та ІВАНОВА Т.Т. (родовий)
   const sur_nom = fio_nom.split(' ')[0];
-  const sni = sur_nom + ' ' + ini;       // ІВАНОВ Т.Т.
-  const snr = sur_rod + ' ' + ini;       // ІВАНОВА Т.Т.
+  const sni = sur_nom + ' ' + ini;
+  const snr = sur_rod + ' ' + ini;
 
-  // Заголовок: перша літера велика, решта — малі (як в оригіналі Word)
-  // "солдатом Івановим Тимофієм Тимофійовичем"
-  const fio_oru_h = fio_oru.charAt(0).toUpperCase() +
-                    fio_oru.slice(1).toLowerCase().replace(/\b\w/g, (c,i) => {
-                      // Залишаємо першу літеру кожного слова великою
-                      return fio_oru.slice(i, i+1);
-                    });
-  // Простіше: передаємо значення поля як є (користувач сам вводить правильно)
-
-  s('d_date',       g('f_date'));
-  s('d_num',        g('f_num'));
-  s('d_fio_oru_h',  fio_oru);   // заголовок
   s('d_fio_nom2',   fio_nom);
   s('d_fio_nom3',   fio_nom);
-  s('d_fio_oru_s',  fio_oru_short); // свідок (орудний скорочений)
+  s('d_fio_oru_s',  fio_oru_short);
   s('d_posada',     posada);
   s('d_posada2',    posada);
   s('d_dob',        dob);
@@ -758,8 +576,6 @@ function updateDoc() {
   s('d_n3d',        n3d);
   s('d_n3n',        n3n);
   s('d_jurn',       jurn);
-  s('d_kdr_rank',   kdr_rank);
-  s('d_kdr_name',   kdr_name);
 
   ['d_sni1','d_sni2','d_sni3','d_sni4','d_sni5','d_sni6'].forEach(id => s(id, sni));
   ['d_snr1','d_snr2','d_snr3'].forEach(id => s(id, snr));
